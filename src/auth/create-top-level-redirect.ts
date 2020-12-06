@@ -11,7 +11,7 @@ export default function createTopLevelRedirect(apiKey: string, path: string, app
 
     res.send(redirectionPage({
       origin: query.shop,
-      redirectTo: `https://${appUrl}${path}?${queryString}`,
+      redirectTo: `${appUrl}${path}?${queryString}`,
       apiKey,
     }));
   };
