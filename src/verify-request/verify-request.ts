@@ -21,6 +21,8 @@ export default async function verifyRequest({
   };
 
   const shopFromQuery = Array.isArray(query.shop) ? query.shop[0] : query.shop;
+  console.log("lib", cookies)
+  console.log("shop", shopFromQuery)
   if (shopFromQuery && cookies.shopOrigin) {
     if (shopFromQuery !== cookies.shopOrigin) {
       // go through login process if different shops
