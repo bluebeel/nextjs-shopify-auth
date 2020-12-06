@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "license": "MIT",
   "description": "Middleware to authenticate a Nextjs application with Shopify",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
     "test": "jest",
@@ -15,7 +15,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "Bluebeel",
+  "author": "Bluebeela",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bluebeel/nextjs-shopify-auth.git"
