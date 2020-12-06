@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: NPM publish
+
+on:
+  release:
+    # This specifies that the build will be triggered when we publish a release
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+        # "ref" specifies the branch to check out.
+        # "github.event.release.target_commitish" is a global variable and specifies the branch the release targeted
+          ref: ${{ github.event.release.target_commitish }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+        # set up git since we will later push to the repo
+      - run: git config --global user.name "GitHub CD bot"
+      - run: git config --global user.email "github-cd-bot@example.com"
+      - run: npm version ${{ github.event.release.tag_name }}
+        # build the project
+      - run: npm run build
+        
+      - run: npm publish --access public --tag ${{ github.event.release.target_commitish }}
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: git push
+        env:
+        # The secret is passed automatically. Nothing to configure.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
