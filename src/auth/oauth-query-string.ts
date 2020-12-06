@@ -24,7 +24,7 @@ export default function oAuthQueryString(
     state: requestNonce,
     scope: scopes.join(', '),
     client_id: apiKey,
-    redirect_uri: `https://${appUrl}${callbackPath}`,
+    redirect_uri: `${appUrl}${callbackPath}`,
   };
 
   if (accessMode === 'online') {
