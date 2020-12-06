@@ -1,0 +1,50 @@
+{
+  "name": "@bluebeela/nextjs-shopify-auth",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Middleware to authenticate a Nextjs application with Shopify",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "build": "tsc",
+    "lint": "eslint",
+    "prepublishOnly": "yarn run clean && yarn run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Bluebeel",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluebeel/nextjs-shopify-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bluebeel/nextjs-shopify-auth/issues"
+  },
+  "homepage": "https://github.com/bluebeel/nextjs-shopify-auth/README.md",
+  "dependencies": {
+    "@shopify/network": "^1.5.0",
+    "cookie": "^0.4.1",
+    "next": "^10.0.3",
+    "nonce": "^1.0.4",
+    "nookies": "^2.5.0",
+    "tslib": "^1.9.3"
+  },
+  "devDependencies": {
+    "@shopify/jest-dom-mocks": "^2.9.1",
+    "@types/cookie": "^0.4.0",
+    "@types/node": "^14.14.10",
+    "babel-preset-shopify": "^21.0.0",
+    "eslint": "^7.8.1",
+    "jest": "^26.4.2",
+    "node-fetch": "^2.6.0",
+    "typescript": "^4.0.2"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/*",
+    "!tsconfig.tsbuildinfo"
+  ]
+}
