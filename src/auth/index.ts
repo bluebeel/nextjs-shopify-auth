@@ -15,15 +15,15 @@ export const TEST_COOKIE_NAME = "shopifyTestCookie";
 export const GRANTED_STORAGE_ACCESS_COOKIE_NAME =
   "shopify.granted_storage_access";
 
-function hasCookieAccess(cookies: Record<string, string>) {
+export function hasCookieAccess(cookies: Record<string, string>) {
   return Boolean(cookies[TEST_COOKIE_NAME]);
 }
 
-function grantedStorageAccess(cookies: Record<string, string>) {
+export function grantedStorageAccess(cookies: Record<string, string>) {
   return Boolean(cookies[GRANTED_STORAGE_ACCESS_COOKIE_NAME]);
 }
 
-function shouldPerformInlineOAuth(cookies: Record<string, string>) {
+export function shouldPerformInlineOAuth(cookies: Record<string, string>) {
   return Boolean(cookies[TOP_LEVEL_OAUTH_COOKIE_NAME]);
 }
 
