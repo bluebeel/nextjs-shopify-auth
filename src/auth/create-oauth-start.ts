@@ -5,7 +5,7 @@ import {OAuthStartOptions} from '../types';
 import ShopifyError, { ErrorResponse } from "./errors";
 import oAuthQueryString from './oauth-query-string';
 import { DEFAULT_ACCESS_MODE, DEFAULT_MYSHOPIFY_DOMAIN, TOP_LEVEL_OAUTH_COOKIE_NAME } from "./index";
-import {setCookie} from "../helpers/cookies";
+import {destroyCookie} from "../helpers/cookies";
 
 export default function createOAuthStart(
   options: OAuthStartOptions,
@@ -37,7 +37,7 @@ export default function createOAuthStart(
       return;
     }
 
-    setCookie({res,name: TOP_LEVEL_OAUTH_COOKIE_NAME, value: ''});
+    destroyCookie({ res, name: TOP_LEVEL_OAUTH_COOKIE_NAME });
 
 
     const formattedQueryString = oAuthQueryString(req, res, options, callbackPath);

@@ -1,16 +1,16 @@
 import { ServerResponse } from "http";
 
-import {loginAgainIfDifferentShop} from './login-again-if-different-shop';
-import {verifyToken} from './verify-token';
-import {Options, Routes} from './types';
+import { loginAgainIfDifferentShop } from "./login-again-if-different-shop";
+import { verifyToken } from "./verify-token";
+import { Options, Routes } from "./types";
 
 export default async function verifyRequest({
-                                        query,
-                                        cookies,
-                                        res,
-                                        options,
-                                      }: {
-  query: Record<string, string | string[]>;
+  query,
+  cookies,
+  res,
+  options,
+}: {
+  query: Record<string, string | string[] | undefined>;
   cookies: Record<string, string>;
   res?: ServerResponse;
   options: Options;
@@ -21,8 +21,6 @@ export default async function verifyRequest({
   };
 
   const shopFromQuery = Array.isArray(query.shop) ? query.shop[0] : query.shop;
-  console.log("lib", cookies)
-  console.log("shop", shopFromQuery)
   if (shopFromQuery && cookies.shopOrigin) {
     if (shopFromQuery !== cookies.shopOrigin) {
       // go through login process if different shops
@@ -33,6 +31,11 @@ export default async function verifyRequest({
   const shopifyToken = cookies.shopifyToken;
   const shopOrigin = shopFromQuery ?? cookies.shopOrigin;
 
-  await verifyToken({ shopOrigin, shopifyToken, res, routes, verifyTokenUrl: options.verifyTokenUrl });
-
+  await verifyToken({
+    shopOrigin,
+    shopifyToken,
+    res,
+    routes,
+    verifyTokenUrl: options.verifyTokenUrl,
+  });
 }

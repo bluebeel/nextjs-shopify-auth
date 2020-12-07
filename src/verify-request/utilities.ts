@@ -1,6 +1,6 @@
 import { Routes } from "./types";
 import { ServerResponse } from "http";
-import { setCookie } from "../helpers/cookies";
+import { destroyCookie } from "../helpers/cookies";
 
 export function redirectToAuth({
   shop,
@@ -19,7 +19,7 @@ export function redirectToAuth({
 }
 
 export function clearSession({ res }: { res?: ServerResponse }) {
-  setCookie({ res, name: "shopSettingsId", value: "" });
-  setCookie({ res, name: "shopOrigin", value: "" });
-  setCookie({ res, name: "shopifyToken", value: "" });
+  destroyCookie({ res, name: "shopSettingsId" });
+	destroyCookie({ res, name: "shopOrigin" });
+	destroyCookie({ res, name: "shopifyToken" });
 }
