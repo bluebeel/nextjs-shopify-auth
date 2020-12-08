@@ -28,7 +28,7 @@ jobs:
         # build the project
       - run: npm run build
         
-      - run: npm publish --access public --tag ${{ github.event.release.target_commitish }}
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: git push
