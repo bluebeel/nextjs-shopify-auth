@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/bluebeel/nextjs-shopify-auth/issues"
   },
-  "homepage": "https://github.com/bluebeel/nextjs-shopify-auth/README.md",
+  "homepage": "https://github.com/bluebeel/nextjs-shopify-auth/blob/main/README.md",
   "dependencies": {
     "@shopify/network": "^1.5.0",
     "cookie": "^0.4.1",
