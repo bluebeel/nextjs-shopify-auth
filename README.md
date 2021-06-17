@@ -115,7 +115,7 @@ export default async function shopifyAuthCallback(req, res) {
 }
 ```
 
-#### /api/shopify/auth/enable-cookies
+#### /api/shopify/auth/enable_cookies
 
 ```js
 import shopify from "../../../../lib/shopify"; // lib is on the root dir
