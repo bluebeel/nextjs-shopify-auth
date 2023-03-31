@@ -20,6 +20,7 @@ export interface AuthConfig {
   accessMode?: "online" | "offline";
   afterAuth?(params: {
     shopOrigin: string;
+    shopHost: string;
     shopifyToken: string;
     shopifyScope: string;
     shopifyAssociatedUser: AssociatedUser;
