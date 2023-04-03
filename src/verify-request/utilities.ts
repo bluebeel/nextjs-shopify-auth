@@ -21,5 +21,6 @@ export function redirectToAuth({
 export function clearSession({ res }: { res?: ServerResponse }) {
   destroyCookie({ res, name: "shopSettingsId" });
 	destroyCookie({ res, name: "shopOrigin" });
+  destroyCookie({ res, name: "shopHost" });
 	destroyCookie({ res, name: "shopifyToken" });
 }

@@ -15,7 +15,7 @@ export default function createOAuthCallback(config: AuthConfig) {
     res: NextApiResponse
   ) {
     const query = req.query as Record<string, string>;
-    const { code, hmac, shop, state: nonce } = query;
+    const { code, hmac, shop, host, state: nonce } = query;
     const { apiKey, secret, afterAuth } = config;
 
     if (nonce == null || req.cookies.shopifyNonce !== nonce) {
@@ -31,6 +31,16 @@ export default function createOAuthCallback(config: AuthConfig) {
     if (shop == null) {
       const error: ErrorResponse = {
         errorMessage: ShopifyError.ShopParamMissing,
+        shopOrigin: shop,
+      };
+
+      res.status(400).send(error);
+      return;
+    }
+
+    if (host == null) {
+      const error: ErrorResponse = {
+        errorMessage: ShopifyError.HostParamMissing,
         shopOrigin: shop,
       };
 
@@ -89,6 +99,12 @@ export default function createOAuthCallback(config: AuthConfig) {
         sameSite: "none",
         path: "/",
       }),
+      cookie.serialize("shopHost", String(host), {
+        secure: true,
+        httpOnly: false,
+        sameSite: "none",
+        path: "/",
+      }),
       cookie.serialize("shopifyToken", String(accessToken), {
         secure: true,
         httpOnly: false,
@@ -106,6 +122,7 @@ export default function createOAuthCallback(config: AuthConfig) {
     if (afterAuth) {
       await afterAuth({
         shopOrigin: shop,
+        shopHost: host,
         shopifyToken: accessToken,
         shopifyScope: associatedUserScope,
         shopifyAssociatedUser: associatedUser,

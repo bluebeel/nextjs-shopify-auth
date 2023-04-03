@@ -51,6 +51,7 @@ const shopifyAuthOptions = {
   // callback for when auth is completed
   async afterAuth({
     shopOrigin,
+    shopHost,
     shopifyToken,
     shopifyAssociatedUser,
     req,
